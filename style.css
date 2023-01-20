@@ -1,0 +1,59 @@
+section{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    text-align: center;
+}
+section>form{
+    display: flex;
+    padding: 30px;
+    flex-direction: column;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 2px solid black;
+
+}
+section>form >label>span{
+    color: red;
+    
+}
+
+section>form>label{
+    color: black;
+    margin: 5px;
+    margin-left: 0;
+    
+}
+section>form>select,input{
+height: 35px;
+margin-bottom: 10px;
+border: 1px solid black;
+padding: 3px;
+border-radius: 5px;
+}
+form select{
+    margin-top: 10px;
+
+}
+button{
+    width: 50%;
+    margin-left:auto ;
+    padding: 10px;
+    font-size: 15px;
+    margin-top: 50px;
+    background-color: black;
+    margin-right: auto;
+    border-radius: 5px;
+    color: white;
+}
+form label#uniqueLabel{
+    margin-top: 0;
+}
+
+form>span{
+    color: red;
+    font-size: 12px;
+}
