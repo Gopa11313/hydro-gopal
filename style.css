@@ -16,7 +16,7 @@ section>form{
     border: 2px solid black;
 
 }
-section>form >label>span{
+section>form>label>span{
     color: red;
     
 }
@@ -49,11 +49,17 @@ button{
     border-radius: 5px;
     color: white;
 }
-form label#uniqueLabel{
-    margin-top: 0;
+form input#checkBox{
+    height: 13px;
 }
 
 form>span{
     color: red;
     font-size: 12px;
+}
+p{
+    font-size: 20px;
+}
+p>span{
+    font-weight: 600;
 }

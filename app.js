@@ -22,6 +22,7 @@ var subTotalTag = document.createElement("p");
 var taxTag = document.createElement("p");
 var totalTag = document.createElement("p");
 var restartButton = document.createElement("button");
+var emailSymbolContainer = /@.!23@/;
 
 var morningCost;
 var afternonCost;
@@ -39,7 +40,7 @@ const validate = () => {
   afternonCost = 0.0;
   eveningCost = 0.0;
   subTotoalAmount = 0.0;
-  solarEnegryDiscount = 0;
+  solarEnegryDiscount = 0.0;
   total = 0.0;
   taxAmount = 0.0;
   provincialCredit = 0.0;
@@ -49,9 +50,11 @@ const validate = () => {
   var isValidate = false;
   if (custName.value == "") {
     nameSpan.innerText = "Requried";
-  } else if (email.value == "") {
-    emailSpan.innerText = "Requried";
-  } else if (custMorningUses.value == "") {
+  }
+  if (email.value == "" || email.value.match(emailSymbolContainer)) {
+    emailSpan.innerText = "Requried && email must contain @ and .";
+  }
+  if (custMorningUses.value == "") {
     morningSpan.innerText = "Requried";
   } else {
     isValidate = true;
@@ -70,39 +73,46 @@ const calculate = () => {
     if (checkBox.checked == true) {
       solarEnegryDiscount = 0.2 * totalUsesOfCharge;
     }
-    if (tvProvince.value == "Quebec") {
+    if (tvProvince.value == "Quebic") {
       taxInPercentage = "7%";
       taxamount = totalUsesOfCharge * 0.07;
-    } else if (tvProvince.value == "British Columbia") {
+    }
+    if (tvProvince.value == "British Columbia") {
       taxamount = 0.15;
       provincialCredit = 50;
       taxInPercentage = "15%";
     }
+    if (tvProvince.value == "Alberta") {
+      taxamount = 0.0;
+    }
     subTotoalAmount =
       totalUsesOfCharge - solarEnegryDiscount - provincialCredit;
     taxamount = subTotoalAmount * taxamount;
+    console.log(taxInPercentage);
     total = subTotoalAmount + taxamount;
     divSection.style.display = "";
 
-    nameTag.innerHTML = "Name: " + custName.value;
-    emailTag.innerHTML = "Email: " + email.value;
+    nameTag.innerHTML = "<span>Name:</span> " + custName.value;
+    emailTag.innerHTML = "<span>Email:</span> " + email.value;
     morningUsesCostTag.innerHTML =
-      "Morning consumption: $" + morningCost.toFixed(2);
+      "<span>Morning consumption:</span>" + " $" + morningCost.toFixed(2);
     afternonCostTag.innerHTML =
-      "Afternon consumption: $" + afternonCost.toFixed(2);
+      "<span>Afternon consumption:</span> $" + afternonCost.toFixed(2);
     eveningUsesCostTag.innerHTML =
-      "Evening consumption: $" + eveningCost.toFixed(2);
+      "<span>Evening consumption:</span> $" + eveningCost.toFixed(2);
     totalUsesTag.innerHTML =
-      "Total Usage charges:" + totalUsesOfCharge.toFixed(2);
+      "<span>Total Usage charges:</span>" + totalUsesOfCharge.toFixed(2);
     solarEnergyDiscoutTag.innerHTML =
-      "Solar Energy Discount Amount: $" + solarEnegryDiscount.toFixed(2);
+      "<span>Solar Energy Discount Amount:</span> $" +
+      solarEnegryDiscount.toFixed(2);
     provinceTag.innerHTML =
-      "Provincial Credit: $" + provincialCredit.toFixed(2);
+      "<span>Provincial Credit:</span> $" + provincialCredit.toFixed(2);
 
-    subTotalTag.innerHTML = "Subtotal $" + subTotoalAmount.toFixed(2);
+    subTotalTag.innerHTML =
+      "<span>Subtotal:</span> $" + subTotoalAmount.toFixed(2);
     taxTag.innerHTML =
-      "Tax (" + taxInPercentage + "): $" + taxamount.toFixed(2);
-    totalTag.innerHTML = "Total: $" + total.toFixed(2);
+      "<span>Tax (" + taxInPercentage + "):</span> $" + taxamount.toFixed(2);
+    totalTag.innerHTML = "<span>Total:</span> $" + total.toFixed(2);
     restartButton.innerHTML = "Restart";
 
     divSection.appendChild(nameTag);
